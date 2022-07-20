@@ -1,0 +1,32 @@
+:root {
+  --white: #fff;
+  --black: #000;
+}
+
+html {
+  font-size: 10px;
+}
+
+header {
+  position: fixed;
+  text-align: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5rem;
+}
+
+.nav {
+  position: relative;
+}
+
+.burger {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+main {
+  min-height: calc(100vh - 5rem);
+  margin-top: 5rem;
+}

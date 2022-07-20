@@ -1,0 +1,10 @@
+.boxed-action {
+  display: inline-flex;
+  align-items: center;
+  color: var(--white);
+  padding: 1.5rem 1.5rem; 
+}
+
+.boxed-action.black {
+  background-color: var(--black);
+}
