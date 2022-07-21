@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import BoxedAction from '../BoxedAction'
+import Results from '../Results'
 
 import data from '../../data.json'
 
@@ -29,11 +30,24 @@ const Quiz = () => {
     }))
   }
 
+  const restartQuiz = () => {
+    setShoes(data.shoes)
+    setProgress(0)
+  }
+
   if (!questions || !shoes) {
     return (
       <p>
         Loading...
       </p>
+    )
+  }
+
+  if (progress === "") {
+    return (
+      <Results
+        restartQuiz={restartQuiz} 
+        shoes={shoes} />
     )
   }
 
