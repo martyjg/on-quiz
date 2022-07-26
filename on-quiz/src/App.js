@@ -5,27 +5,31 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { createRenderer } from 'fela'
+import { RendererProvider } from 'react-fela'
+
 import Home from './components/Home'
 import Quiz from './components/Quiz'
 
+const renderer = createRenderer()
+
 function App() {
   return (
-    <Router>
-      <header>
-        <nav>
-          <span className='burger'>—</span>
-          <Link to="/">
-            <span className='logo'>ON</span>
-          </Link>
-        </nav>
-      </header>
-      <main>
+    <RendererProvider renderer={renderer}>
+      <Router>
+        <header>
+          <nav>
+            <Link to="/" className='logo'>
+              ON
+            </Link>
+          </nav>
+        </header>
         <Routes>
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/" element={<Home />} />
         </Routes>
-      </main>
-    </Router>
+      </Router>
+    </RendererProvider>
   );
 }
 

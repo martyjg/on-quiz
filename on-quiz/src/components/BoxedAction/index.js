@@ -1,10 +1,16 @@
-import './styles.css'
+import styles from './styles'
+import { useFela } from 'react-fela'
 
-const BoxedAction = (props) => {
+const BoxedAction = ({
+  ele,
+  extend,
+  ...props
+}) => {
+  const { css } = useFela()
   const Component = props.ele ? props.ele : 'div'
-  const backgroundColor = props.backgroundColor ? props.backgroundColor : ''
+
   return (
-    <Component className={`boxed-action ${backgroundColor}`} {...props}>
+    <Component className={css(styles.boxedAction, extend)} {...props}>
       {props.children}
     </Component>
   )

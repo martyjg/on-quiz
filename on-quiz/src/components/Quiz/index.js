@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import BoxedAction from '../BoxedAction'
 import Results from '../Results'
+import styles from './styles'
+import { useFela } from 'react-fela'
 
 import data from '../../data.json'
 
 const Quiz = () => {
-
   const [questions, setQuestions] = useState(null)
   const [progress, setProgress] = useState(0)
   const [shoes, setShoes] = useState(null)
+  const { css } = useFela()
 
   useEffect(() => {
-    console.log(data)
     if (data.questions) {
       setQuestions(data.questions)
     }
@@ -37,9 +38,12 @@ const Quiz = () => {
 
   if (!questions || !shoes) {
     return (
-      <p>
-        Loading...
-      </p>
+      <main className={css(styles.container)}>
+        <img src='/images/loader.gif' alt='Loading the quiz' />
+        <p className={css(styles.loadingText)}>
+          We're running to get your results.
+        </p>
+      </main>
     )
   }
 
@@ -54,21 +58,22 @@ const Quiz = () => {
   const currentQuestion = questions[progress]
 
   return (
-    <>
-      <p>
+    <main className={css(styles.container)}>
+      <p className={css(styles.introText)}>
         Try On Quiz <br />
         30 Days Risk Free
       </p>
       {currentQuestion &&
         <>
-          <p>
+          <p className={css(styles.question)}>
             {currentQuestion.copy}
           </p>
-          <div>
+          <div className={css(styles.buttonContainer)}>
             {currentQuestion.answers.map((answer, idx) => {
               return (
                 <BoxedAction
                   key={`${currentQuestion.id}-${idx}`}
+                  extend={styles.button}
                   onClick={() => handleAnswerClick(answer)}
                   ele='button'>
                   {answer.copy}
@@ -78,7 +83,7 @@ const Quiz = () => {
           </div>
         </>
       }
-    </>
+    </main>
   )
 }
 

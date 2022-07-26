@@ -1,21 +1,25 @@
 import { Link } from 'react-router-dom'
-import BoxedLink from '../BoxedAction'
+import BoxedAction from '../BoxedAction'
+import styles from './styles'
+import { useFela } from 'react-fela'
 
 const Home = () => {
+  const { css } = useFela()
+
   return (
-    <>
-      <h1>
-        Take the quiz and try your first pair!
+    <main className={css(styles.container)}>
+      <h1 className={css(styles.heading)}>
+        Take the quiz<br /> and try your first pair!
       </h1>
-      <Link to="/quiz">
-        <BoxedLink backgroundColor="black">
+      <Link to="/quiz" className={css({ textDecoration: 'none' })}>
+        <BoxedAction extend={styles.button}>
           Try On Trial
-        </BoxedLink>
+        </BoxedAction>
       </Link>
-      <p>
+      <p className={css(styles.smallText)}>
         30 Days risk free
       </p>
-    </>
+    </main>
   )
 }
 
