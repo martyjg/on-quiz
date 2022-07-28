@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import BoxedAction from '../BoxedAction'
 import Results from '../Results'
+import Question from '../Question'
 import styles from './styles'
 import { useFela } from 'react-fela'
 
@@ -64,24 +64,10 @@ const Quiz = () => {
         30 Days Risk Free
       </p>
       {currentQuestion &&
-        <>
-          <p className={css(styles.question)}>
-            {currentQuestion.copy}
-          </p>
-          <div className={css(styles.buttonContainer)}>
-            {currentQuestion.answers.map((answer, idx) => {
-              return (
-                <BoxedAction
-                  key={`${currentQuestion.id}-${idx}`}
-                  extend={styles.button}
-                  onClick={() => handleAnswerClick(answer)}
-                  ele='button'>
-                  {answer.copy}
-                </BoxedAction>
-              )
-            })}
-          </div>
-        </>
+        <Question
+          key={currentQuestion.id} 
+          handleAnswerClick={handleAnswerClick}
+          {...currentQuestion} />
       }
     </main>
   )
